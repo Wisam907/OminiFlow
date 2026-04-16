@@ -1,0 +1,61 @@
+# 编译产物和依赖
+build/
+devel/
+install/
+log/
+*.o
+*.a
+*.so
+*.dll
+*.exe
+*.out
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# IDE 配置
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.clangd
+.cache/
+
+# ROS2 特定
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+ros2_ws/src/CMakeLists.txt  # 如果不需要跟踪符号链接
+
+# 固件编译中间文件（常见嵌入式工具链）
+*.elf
+*.hex
+*.bin
+*.map
+.dfu
+*.o
+*.d
+*.lst
+
+# 中间件（例如 Fast-DDS、MQTT 等生成的配置文件）
+*.dsv
+*.db
+
+# 临时文件和操作系统生成
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+
+# 其他
+*.swp
+*.swo
+*~
