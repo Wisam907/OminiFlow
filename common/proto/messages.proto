@@ -1,0 +1,29 @@
+// 声明为proto3语法，不声明则默认为proto2
+syntax = "proto3";
+
+// 定义命名空间，防止不同proto文件中的消息类型重名
+package ominiflow;
+
+// 定义消息结构
+// 使用message定义应该复合数据结构，类似C语言的struct
+// message格式为：[类型][字段名] = [唯一标识号];
+// 其中1-15号字段使用1Byte编码，适合频繁出现的字段；16-2047号字段使用2Bytes编码
+// 已上线服务的字段编号不可随意更改!!!
+message SensorPayload {
+  float acc_x = 1;
+  float acc_y = 2;
+  float acc_z = 3;
+  float temp = 4;
+}
+
+message ControlCommand {
+  uint32 sample_rate_hz = 1;
+  bool enable_led = 2;
+  string mode = 3;
+}
+
+message SystemStatus {
+  uint32 active_node = 1;
+  float cpu_usage = 2;
+  uint64 total_packets = 3;
+}
