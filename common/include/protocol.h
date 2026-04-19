@@ -8,6 +8,9 @@
 extern "C" {
 #endif
 
+// 协议头MAGIC数字，定义为ASCII: 'OF'
+#define OMINI_PROTO_HEADER_MAGIC 0x4F46
+
 // 消息类型宏定义枚举
 typedef enum {
     OMINI_MSG_INVALID = 0,
@@ -25,7 +28,7 @@ typedef enum {
 #pragma pack(push, 1)
 
 typedef struct {
-    uint16_t magic;         // Magic数字: 0x4F46 (ASCII: 'OF') 
+    uint16_t magic;         // Magic数字: OMINI_PROTO_HEADER_MAGIC 
     uint8_t  version;       // 协议版本：0x01
     uint8_t  msg_type;      // 消息类型：请见枚举宏定义OminiFlowMsgType_e
     uint32_t seq_num;       // 包序列号：用于丢包检测
@@ -35,7 +38,7 @@ typedef struct {
 }OminiFlowHeader_t;
 
 // 从堆栈中恢复字节对齐配置，避免影响其他结构体导致读写速度减慢甚至崩溃
-#pragma push(pop)
+#pragma pack(pop)
 
 #ifdef __cplusplus
 }

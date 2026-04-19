@@ -2,13 +2,15 @@
 syntax = "proto3";
 
 // 定义命名空间，防止不同proto文件中的消息类型重名
-package ominiflow;
+package ominiflow_proto;
 
 // 定义消息结构
 // 使用message定义应该复合数据结构，类似C语言的struct
 // message格式为：[类型][字段名] = [唯一标识号];
 // 其中1-15号字段使用1Byte编码，适合频繁出现的字段；16-2047号字段使用2Bytes编码
 // 已上线服务的字段编号不可随意更改!!!
+
+// 传感器数据载荷（如果不用原始二进制，也可以用这个）
 message SensorPayload {
   float acc_x = 1;
   float acc_y = 2;
@@ -16,10 +18,11 @@ message SensorPayload {
   float temp = 4;
 }
 
+// 控制指令（由ROS2发出）
 message ControlCommand {
-  uint32 sample_rate_hz = 1;
-  bool enable_led = 2;
-  string mode = 3;
+  uint32 sample_rate_hz = 1; // 动态调整采样率
+  bool enable_led = 2; // 远程控制LED
+  string mode = 3; // 工作模式
 }
 
 message SystemStatus {
